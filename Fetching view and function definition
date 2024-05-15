@@ -1,0 +1,30 @@
+Fetching view definition
+
+
+SELECT 
+    SCHEMA_NAME(o.schema_id) AS [Schema], 
+    o.name AS [View Name], 
+    m.definition AS [View Definition]
+FROM 
+    sys.objects o
+INNER JOIN 
+    sys.sql_modules m ON o.object_id = m.object_id
+WHERE 
+    o.type = 'V'; 
+
+
+
+
+Fetching function definition
+
+
+SELECT 
+    SCHEMA_NAME(o.schema_id) AS [Schema], 
+    o.name AS [Function Name], 
+    m.definition AS [Function Definition]
+FROM 
+    sys.objects o
+INNER JOIN 
+    sys.sql_modules m ON o.object_id = m.object_id
+WHERE 
+    o.type IN ('FN', 'IF', 'TF'); 
